@@ -1,0 +1,6 @@
+{
+  "eval_id": 2,
+  "eval_name": "chatbot-scenario-request",
+  "prompt": "このECサイトのチャットボットシナリオを作りたい: https://bruno-onlineshop.com/",
+  "assertions": []
+}

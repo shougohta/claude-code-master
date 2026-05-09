@@ -1,0 +1,383 @@
+{
+  "metadata": {
+    "skill_name": "chat-commerce-story",
+    "skill_path": "<path/to/skill>",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-03-21T07:39:46Z",
+    "evals_run": [
+      1,
+      2,
+      3
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 111.1,
+        "tokens": 17158,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u30b5\u30fc\u30d3\u30b9\u306e\u30b8\u30e3\u30f3\u30eb\u3068\u6982\u8981\u30bb\u30af\u30b7\u30e7\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30b8\u30e3\u30f3\u30eb', '\u30b5\u30fc\u30d3\u30b9\u6982\u8981']"
+        },
+        {
+          "text": "\u4eba\u6c17\u5546\u54c1\u304c3\u4ef6\u4ee5\u4e0a\u30ea\u30b9\u30c8\u3055\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "5/3 \u4ef6\u306e\u5546\u54c1\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u691c\u51fa"
+        },
+        {
+          "text": "\u521d\u56de\u8a2a\u554f\u8005\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u521d\u56de']"
+        },
+        {
+          "text": "\u30ea\u30d4\u30fc\u30bf\u30fc\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30ea\u30d4\u30fc\u30bf\u30fc']"
+        },
+        {
+          "text": "VIP\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['VIP']"
+        },
+        {
+          "text": "\u30dc\u30c3\u30c8\u306e\u767a\u8a00\u3068\u9078\u629e\u80a2\u5f62\u5f0f\u306e\u4f1a\u8a71\u30d5\u30ed\u30fc\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30dc\u30c3\u30c8', '\ud83e\udd16']"
+        },
+        {
+          "text": "\u8cfc\u5165\u8a98\u5c0e\uff08\u5546\u54c1\u30da\u30fc\u30b8/\u30ab\u30fc\u30c8\uff09\u3078\u306e\u8a98\u5c0e\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30ab\u30fc\u30c8', '\u5546\u54c1\u3092\u898b\u308b', '\u8cfc\u5165']"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 131.4,
+        "tokens": 17830,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u30b5\u30fc\u30d3\u30b9\u306e\u30b8\u30e3\u30f3\u30eb\u3068\u6982\u8981\u30bb\u30af\u30b7\u30e7\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30b8\u30e3\u30f3\u30eb', '\u30b5\u30fc\u30d3\u30b9\u6982\u8981']"
+        },
+        {
+          "text": "\u4eba\u6c17\u5546\u54c1\u304c3\u4ef6\u4ee5\u4e0a\u30ea\u30b9\u30c8\u3055\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "5/3 \u4ef6\u306e\u5546\u54c1\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u691c\u51fa"
+        },
+        {
+          "text": "\u521d\u56de\u8a2a\u554f\u8005\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u521d\u56de']"
+        },
+        {
+          "text": "\u30ea\u30d4\u30fc\u30bf\u30fc\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30ea\u30d4\u30fc\u30bf\u30fc']"
+        },
+        {
+          "text": "VIP\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['VIP']"
+        },
+        {
+          "text": "\u30dc\u30c3\u30c8\u306e\u767a\u8a00\u3068\u9078\u629e\u80a2\u5f62\u5f0f\u306e\u4f1a\u8a71\u30d5\u30ed\u30fc\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30dc\u30c3\u30c8', '\ud83e\udd16']"
+        },
+        {
+          "text": "\u8cfc\u5165\u8a98\u5c0e\uff08\u5546\u54c1\u30da\u30fc\u30b8/\u30ab\u30fc\u30c8\uff09\u3078\u306e\u8a98\u5c0e\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30ab\u30fc\u30c8', '\u5546\u54c1\u3092\u898b\u308b', '\u8cfc\u5165']"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 7,
+        "failed": 0,
+        "total": 7,
+        "time_seconds": 126.1,
+        "tokens": 17568,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u30b5\u30fc\u30d3\u30b9\u306e\u30b8\u30e3\u30f3\u30eb\u3068\u6982\u8981\u30bb\u30af\u30b7\u30e7\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30b8\u30e3\u30f3\u30eb', '\u30b5\u30fc\u30d3\u30b9\u6982\u8981']"
+        },
+        {
+          "text": "\u4eba\u6c17\u5546\u54c1\u304c3\u4ef6\u4ee5\u4e0a\u30ea\u30b9\u30c8\u3055\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "5/3 \u4ef6\u306e\u5546\u54c1\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u691c\u51fa"
+        },
+        {
+          "text": "\u521d\u56de\u8a2a\u554f\u8005\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u521d\u56de']"
+        },
+        {
+          "text": "\u30ea\u30d4\u30fc\u30bf\u30fc\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30ea\u30d4\u30fc\u30bf\u30fc']"
+        },
+        {
+          "text": "VIP\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['VIP']"
+        },
+        {
+          "text": "\u30dc\u30c3\u30c8\u306e\u767a\u8a00\u3068\u9078\u629e\u80a2\u5f62\u5f0f\u306e\u4f1a\u8a71\u30d5\u30ed\u30fc\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30dc\u30c3\u30c8', '\ud83e\udd16']"
+        },
+        {
+          "text": "\u8cfc\u5165\u8a98\u5c0e\uff08\u5546\u54c1\u30da\u30fc\u30b8/\u30ab\u30fc\u30c8\uff09\u3078\u306e\u8a98\u5c0e\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30ab\u30fc\u30c8', '\u5546\u54c1\u3092\u898b\u308b', '\u8cfc\u5165']"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.5714285714285714,
+        "passed": 4,
+        "failed": 3,
+        "total": 7,
+        "time_seconds": 244.8,
+        "tokens": 23370,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u30b5\u30fc\u30d3\u30b9\u306e\u30b8\u30e3\u30f3\u30eb\u3068\u6982\u8981\u30bb\u30af\u30b7\u30e7\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30b5\u30fc\u30d3\u30b9\u6982\u8981']"
+        },
+        {
+          "text": "\u4eba\u6c17\u5546\u54c1\u304c3\u4ef6\u4ee5\u4e0a\u30ea\u30b9\u30c8\u3055\u308c\u3066\u3044\u308b\u304b",
+          "passed": false,
+          "evidence": "2/3 \u4ef6\u306e\u5546\u54c1\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u691c\u51fa"
+        },
+        {
+          "text": "\u521d\u56de\u8a2a\u554f\u8005\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u521d\u56de']"
+        },
+        {
+          "text": "\u30ea\u30d4\u30fc\u30bf\u30fc\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": false,
+          "evidence": "\u30ad\u30fc\u30ef\u30fc\u30c9\u672a\u691c\u51fa: ['\u30ea\u30d4\u30fc\u30bf\u30fc']"
+        },
+        {
+          "text": "VIP\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": false,
+          "evidence": "\u30ad\u30fc\u30ef\u30fc\u30c9\u672a\u691c\u51fa: ['VIP']"
+        },
+        {
+          "text": "\u30dc\u30c3\u30c8\u306e\u767a\u8a00\u3068\u9078\u629e\u80a2\u5f62\u5f0f\u306e\u4f1a\u8a71\u30d5\u30ed\u30fc\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['BOT', '[\u9078\u629e\u80a2]']"
+        },
+        {
+          "text": "\u8cfc\u5165\u8a98\u5c0e\uff08\u5546\u54c1\u30da\u30fc\u30b8/\u30ab\u30fc\u30c8\uff09\u3078\u306e\u8a98\u5c0e\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30ab\u30fc\u30c8', '\u5546\u54c1\u3092\u898b\u308b', '\u8cfc\u5165']"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.7142857142857143,
+        "passed": 5,
+        "failed": 2,
+        "total": 7,
+        "time_seconds": 208.5,
+        "tokens": 22207,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u30b5\u30fc\u30d3\u30b9\u306e\u30b8\u30e3\u30f3\u30eb\u3068\u6982\u8981\u30bb\u30af\u30b7\u30e7\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30b5\u30fc\u30d3\u30b9\u6982\u8981', '\u30b5\u30fc\u30d3\u30b9\u30fb\u30d6\u30e9\u30f3\u30c9\u306e\u7279\u5fb4']"
+        },
+        {
+          "text": "\u4eba\u6c17\u5546\u54c1\u304c3\u4ef6\u4ee5\u4e0a\u30ea\u30b9\u30c8\u3055\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "3/3 \u4ef6\u306e\u5546\u54c1\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u691c\u51fa"
+        },
+        {
+          "text": "\u521d\u56de\u8a2a\u554f\u8005\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": false,
+          "evidence": "\u30ad\u30fc\u30ef\u30fc\u30c9\u672a\u691c\u51fa: ['\u521d\u56de']"
+        },
+        {
+          "text": "\u30ea\u30d4\u30fc\u30bf\u30fc\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30ea\u30d4\u30fc\u30bf\u30fc']"
+        },
+        {
+          "text": "VIP\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": false,
+          "evidence": "\u30ad\u30fc\u30ef\u30fc\u30c9\u672a\u691c\u51fa: ['VIP']"
+        },
+        {
+          "text": "\u30dc\u30c3\u30c8\u306e\u767a\u8a00\u3068\u9078\u629e\u80a2\u5f62\u5f0f\u306e\u4f1a\u8a71\u30d5\u30ed\u30fc\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30dc\u30c3\u30c8', 'BOT']"
+        },
+        {
+          "text": "\u8cfc\u5165\u8a98\u5c0e\uff08\u5546\u54c1\u30da\u30fc\u30b8/\u30ab\u30fc\u30c8\uff09\u3078\u306e\u8a98\u5c0e\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30ab\u30fc\u30c8', '\u5546\u54c1\u3092\u898b\u308b', '\u8cfc\u5165']"
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 3,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 0.5714285714285714,
+        "passed": 4,
+        "failed": 3,
+        "total": 7,
+        "time_seconds": 193.4,
+        "tokens": 19149,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "\u30b5\u30fc\u30d3\u30b9\u306e\u30b8\u30e3\u30f3\u30eb\u3068\u6982\u8981\u30bb\u30af\u30b7\u30e7\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30b5\u30fc\u30d3\u30b9\u6982\u8981', '\u30d6\u30e9\u30f3\u30c9\u6982\u8981']"
+        },
+        {
+          "text": "\u4eba\u6c17\u5546\u54c1\u304c3\u4ef6\u4ee5\u4e0a\u30ea\u30b9\u30c8\u3055\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "5/3 \u4ef6\u306e\u5546\u54c1\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u691c\u51fa"
+        },
+        {
+          "text": "\u521d\u56de\u8a2a\u554f\u8005\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u521d\u56de']"
+        },
+        {
+          "text": "\u30ea\u30d4\u30fc\u30bf\u30fc\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": false,
+          "evidence": "\u30ad\u30fc\u30ef\u30fc\u30c9\u672a\u691c\u51fa: ['\u30ea\u30d4\u30fc\u30bf\u30fc']"
+        },
+        {
+          "text": "VIP\u5411\u3051\u30b9\u30c8\u30fc\u30ea\u30fc\u30d1\u30bf\u30fc\u30f3\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": false,
+          "evidence": "\u30ad\u30fc\u30ef\u30fc\u30c9\u672a\u691c\u51fa: ['VIP']"
+        },
+        {
+          "text": "\u30dc\u30c3\u30c8\u306e\u767a\u8a00\u3068\u9078\u629e\u80a2\u5f62\u5f0f\u306e\u4f1a\u8a71\u30d5\u30ed\u30fc\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": false,
+          "evidence": "\u30ad\u30fc\u30ef\u30fc\u30c9\u672a\u691c\u51fa: ['\u30dc\u30c3\u30c8', 'BOT', '[\u9078\u629e\u80a2]', '\ud83e\udd16']"
+        },
+        {
+          "text": "\u8cfc\u5165\u8a98\u5c0e\uff08\u5546\u54c1\u30da\u30fc\u30b8/\u30ab\u30fc\u30c8\uff09\u3078\u306e\u8a98\u5c0e\u304c\u542b\u307e\u308c\u3066\u3044\u308b\u304b",
+          "passed": true,
+          "evidence": "\u691c\u51fa\u30ad\u30fc\u30ef\u30fc\u30c9: ['\u30ab\u30fc\u30c8', '\u8cfc\u5165']"
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 122.8667,
+        "stddev": 10.5292,
+        "min": 111.1,
+        "max": 131.4
+      },
+      "tokens": {
+        "mean": 17518.6667,
+        "stddev": 338.7054,
+        "min": 17158,
+        "max": 17830
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 0.619,
+        "stddev": 0.0825,
+        "min": 0.5714,
+        "max": 0.7143
+      },
+      "time_seconds": {
+        "mean": 215.5667,
+        "stddev": 26.4186,
+        "min": 193.4,
+        "max": 244.8
+      },
+      "tokens": {
+        "mean": 21575.3333,
+        "stddev": 2180.2436,
+        "min": 19149,
+        "max": 23370
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.38",
+      "time_seconds": "-92.7",
+      "tokens": "-4057"
+    }
+  },
+  "notes": []
+}

@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code Skills 完全ガイド</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d2e;
+      --surface2: #232640;
+      --border: #2e3155;
+      --accent: #7c6af7;
+      --accent2: #5eaff7;
+      --accent3: #f7a35e;
+      --accent4: #5ef7b0;
+      --text: #e2e4f0;
+      --text-dim: #8890b0;
+      --text-bright: #ffffff;
+      --tag-bg: #2a2d4a;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: linear-gradient(135deg, #1a1d2e 0%, #0f1117 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 24px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(124,106,247,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .header-badge {
+      display: inline-block;
+      background: rgba(124,106,247,0.15);
+      border: 1px solid rgba(124,106,247,0.4);
+      color: #a89cf7;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    header h1 {
+      font-size: clamp(24px, 5vw, 42px);
+      font-weight: 800;
+      color: var(--text-bright);
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+    header h1 span { color: var(--accent); }
+    header p {
+      color: var(--text-dim);
+      font-size: 16px;
+      max-width: 600px;
+      margin: 0 auto 24px;
+    }
+    .toc-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .toc-pill {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .toc-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(124,106,247,0.08);
+    }
+
+    /* ===== LAYOUT ===== */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    section {
+      margin-bottom: 64px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .section-num {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), #5560f7);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-bright);
+    }
+    h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--text-bright);
+      margin: 24px 0 12px;
+    }
+    p { margin-bottom: 12px; color: var(--text); }
+
+    /* ===== CARDS ===== */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 16px;
+    }
+    .card-accent {
+      border-left: 3px solid var(--accent);
+    }
+    .card-green {
+      border-left: 3px solid var(--accent4);
+    }
+    .card-orange {
+      border-left: 3px solid var(--accent3);
+    }
+    .card-blue {
+      border-left: 3px solid var(--accent2);
+    }
+    .card h3 { margin-top: 0; }
+
+    /* ===== GRID ===== */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    /* ===== DIAGRAM ===== */
+    .diagram {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 24px;
+      margin: 24px 0;
+      overflow-x: auto;
+    }
+    .diagram-title {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 24px;
+    }
+
+    /* Skill anatomy diagram */
+    .anatomy {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+    .anatomy-layer {
+      width: 100%;
+      max-width: 480px;
+      padding: 14px 20px;
+      text-align: center;
+      position: relative;
+    }
+    .anatomy-layer:not(:last-child)::after {
+      content: '▼';
+      display: block;
+      color: var(--text-dim);
+      font-size: 14px;
+      margin-top: 8px;
+    }
+    .layer-1 {
+      background: linear-gradient(135deg, rgba(124,106,247,0.25), rgba(124,106,247,0.1));
+      border: 1px solid rgba(124,106,247,0.5);
+      border-radius: 12px;
+    }
+    .layer-2 {
+      background: linear-gradient(135deg, rgba(94,175,247,0.2), rgba(94,175,247,0.08));
+      border: 1px solid rgba(94,175,247,0.4);
+      border-radius: 12px;
+      margin-top: 4px;
+    }
+    .layer-3 {
+      background: linear-gradient(135deg, rgba(94,247,176,0.15), rgba(94,247,176,0.05));
+      border: 1px solid rgba(94,247,176,0.3);
+      border-radius: 12px;
+      margin-top: 4px;
+    }
+    .layer-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-bright);
+    }
+    .layer-sub {
+      font-size: 12px;
+      color: var(--text-dim);
+      margin-top: 2px;
+    }
+    .layer-badge {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .badge-always { background: rgba(124,106,247,0.3); color: #a89cf7; }
+    .badge-trigger { background: rgba(94,175,247,0.3); color: #8ec8f7; }
+    .badge-lazy { background: rgba(94,247,176,0.2); color: #7af7c8; }
+
+    /* Flow diagram */
+    .flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+    }
+    .flow-box {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-bright);
+      min-width: 110px;
+    }
+    .flow-box.highlight {
+      background: linear-gradient(135deg, rgba(124,106,247,0.25), rgba(124,106,247,0.1));
+      border-color: rgba(124,106,247,0.5);
+      color: #c0b8ff;
+    }
+    .flow-arrow {
+      padding: 0 10px;
+      color: var(--text-dim);
+      font-size: 18px;
+    }
+    .flow-sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    /* Comparison table */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+    }
+    .compare-table th {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 12px 16px;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-bright);
+    }
+    .compare-table th:first-child { border-radius: 8px 0 0 0; }
+    .compare-table th:last-child { border-radius: 0 8px 0 0; }
+    .compare-table td {
+      border: 1px solid var(--border);
+      padding: 11px 16px;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .compare-table tr:last-child td:first-child { border-radius: 0 0 0 8px; }
+    .compare-table tr:last-child td:last-child { border-radius: 0 0 8px 0; }
+    .compare-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+    .compare-table .label-col { color: var(--text-dim); font-weight: 600; }
+    .tag-rag { color: #f7a35e; }
+    .tag-skill { color: #7c6af7; }
+
+    /* Code block */
+    .code-block {
+      background: #0d0f1a;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px 20px;
+      font-family: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      overflow-x: auto;
+      margin: 16px 0;
+      position: relative;
+      white-space: pre;
+    }
+    .code-block .code-label {
+      position: absolute;
+      top: 10px; right: 14px;
+      font-size: 11px;
+      color: var(--text-dim);
+      font-family: sans-serif;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .c-key { color: #7c6af7; }
+    .c-str { color: #5eaff7; }
+    .c-comment { color: #4a5070; }
+    .c-val { color: #5ef7b0; }
+    .c-head { color: #f7a35e; }
+
+    /* Platform badges */
+    .platform-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .platform-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .platform-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .platform-icon {
+      width: 28px; height: 28px;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+    }
+    .pi-cc { background: rgba(124,106,247,0.2); }
+    .pi-web { background: rgba(94,175,247,0.2); }
+    .pi-api { background: rgba(94,247,176,0.2); }
+    .platform-desc { font-size: 13px; color: var(--text-dim); margin-bottom: 10px; }
+    .platform-steps { font-size: 12px; color: var(--text); }
+    .platform-steps li { margin-bottom: 4px; list-style: none; padding-left: 16px; position: relative; }
+    .platform-steps li::before { content: '→'; position: absolute; left: 0; color: var(--text-dim); }
+
+    /* Share section */
+    .share-methods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+    .share-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .share-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .share-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin-bottom: 6px;
+    }
+    .share-desc {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    /* Steps */
+    .steps {
+      counter-reset: step;
+    }
+    .step {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .step-num {
+      counter-increment: step;
+      width: 28px; height: 28px;
+      background: linear-gradient(135deg, var(--accent), #5560f7);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-content h4 {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-bright);
+      margin-bottom: 4px;
+    }
+    .step-content p { margin-bottom: 0; font-size: 13px; }
+
+    /* Info box */
+    .info-box {
+      background: rgba(124,106,247,0.08);
+      border: 1px solid rgba(124,106,247,0.25);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 13px;
+      color: #c0b8f0;
+    }
+    .info-box strong { color: #a89cf7; }
+
+    .tip-box {
+      background: rgba(94,247,176,0.06);
+      border: 1px solid rgba(94,247,176,0.2);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 13px;
+      color: #a0f0d0;
+    }
+    .tip-box strong { color: #5ef7b0; }
+
+    /* Tag */
+    .tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin: 2px;
+    }
+
+    /* Skill examples list */
+    .skill-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .skill-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12px;
+    }
+    .skill-item-name {
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+    .skill-item-desc {
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+
+    /* Divider */
+    hr.section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 48px 0;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 32px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .flow { flex-direction: column; }
+      .flow-arrow { transform: rotate(90deg); padding: 6px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-badge">Claude Code Skills</div>
+  <h1>Claude <span>Skills</span> 完全ガイド</h1>
+  <p>社内パイオニアになるための、Skillsの概念・作り方・使い方・共有方法をまとめたリファレンス</p>
+  <nav class="toc-pills">
+    <a href="#concept" class="toc-pill">1. Skillsとは何か</a>
+    <a href="#howto" class="toc-pill">2. 作り方・使い方</a>
+    <a href="#rag" class="toc-pill">3. RAGとの違い</a>
+    <a href="#platform" class="toc-pill">4. 対応プラットフォーム</a>
+    <a href="#share" class="toc-pill">5. 共有する方法</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ===== 1. CONCEPT ===== -->
+<section id="concept">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Skillsとは何か</h2>
+  </div>
+
+  <p>Skillsは<strong style="color:var(--text-bright)">「Claudeに専門的な作業手順を教える命令書フォルダ」</strong>です。<br>
+  毎回プロンプトに長い指示を書かなくても、SkillをONにするだけで、Claudeがその分野の専門家として動いてくれます。</p>
+
+  <div class="card card-accent">
+    <h3>一言で言うと</h3>
+    <p style="font-size:16px; color:var(--text-bright)">
+      <strong>SKILL.md</strong> というファイルに「何をどうやるか」を書くだけで、<br>
+      Claudeがそのやり方を習得した状態で動いてくれる仕組み。
+    </p>
+  </div>
+
+  <h3>なぜ必要なのか</h3>
+  <div class="grid-2">
+    <div class="card">
+      <h3 style="color: var(--accent3)">Skillなし</h3>
+      <p>毎回「社内のフォーマットに合わせて、〇〇の観点で、△△の形式で…」と長い指示を書く必要がある。再現性が低く、人によって結果がバラバラ。</p>
+    </div>
+    <div class="card">
+      <h3 style="color: var(--accent4)">Skillあり</h3>
+      <p>「進捗報告を書いて」と言うだけで、社内フォーマット・トーン・必須項目を守った文書が自動生成される。一度作れば誰でも同じ品質。</p>
+    </div>
+  </div>
+
+  <h3>Skillの構造（ファイルの中身）</h3>
+
+  <div class="diagram">
+    <div class="diagram-title">Skill フォルダ構成</div>
+    <div class="flow" style="flex-direction: column; align-items: flex-start; max-width: 500px; margin: 0 auto;">
+      <div class="code-block" style="margin:0; width:100%">
+<span class="c-val">my-skill/</span>
+├── <span class="c-key">SKILL.md</span>          <span class="c-comment"># 必須: 命令書（YAMLヘッダ + Markdown）</span>
+├── scripts/          <span class="c-comment"># 任意: 実行スクリプト（Python等）</span>
+├── references/       <span class="c-comment"># 任意: 参照ドキュメント</span>
+└── assets/           <span class="c-comment"># 任意: テンプレート・画像等</span>
+      </div>
+    </div>
+  </div>
+
+  <h3>Skillの3層ロード構造</h3>
+  <p>Skillsは効率的に動作するため、3段階で情報を読み込みます：</p>
+
+  <div class="diagram">
+    <div class="diagram-title">Progressive Disclosure（段階的読み込み）</div>
+    <div class="anatomy">
+      <div class="anatomy-layer layer-1">
+        <div class="layer-label">
+          Layer 1: メタデータ（name + description）
+          <span class="layer-badge badge-always">常に読み込み済み</span>
+        </div>
+        <div class="layer-sub">約100トークン / いつでもコンテキストにある</div>
+      </div>
+      <div class="anatomy-layer layer-2">
+        <div class="layer-label">
+          Layer 2: SKILL.md 本文
+          <span class="layer-badge badge-trigger">Skillが発動したとき</span>
+        </div>
+        <div class="layer-sub">500行以内推奨 / 具体的な手順・ルールが書かれる</div>
+      </div>
+      <div class="anatomy-layer layer-3">
+        <div class="layer-label">
+          Layer 3: 添付リソース（scripts, references等）
+          <span class="layer-badge badge-lazy">必要になったとき</span>
+        </div>
+        <div class="layer-sub">サイズ無制限 / スクリプトは実行するだけで読み込み不要</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>発動の仕組み</h3>
+  <p>Skillsはユーザーの発言を見て<strong style="color:var(--text-bright)">自動的に判断</strong>して発動します：</p>
+
+  <div class="diagram">
+    <div class="diagram-title">Skill 発動フロー</div>
+    <div class="flow">
+      <div class="flow-box">
+        ユーザーの発言
+        <div class="flow-sub">例：「PDF抽出して」</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box highlight">
+        description照合
+        <div class="flow-sub">全Skillのdescriptionを比較</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">
+        SKILL.md本文読込
+        <div class="flow-sub">マッチしたSkillを展開</div>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box highlight">
+        指示に従って実行
+        <div class="flow-sub">スクリプト・参照も活用</div>
+      </div>
+    </div>
+  </div>
+
+  <h3>実際に使われているSkillの例</h3>
+  <div class="skill-list">
+    <div class="skill-item">
+      <div class="skill-item-name">webapp-testing</div>
+      <div class="skill-item-desc">PlaywrightでWebアプリをテスト</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-item-name">internal-comms</div>
+      <div class="skill-item-desc">社内フォーマットで進捗報告・ニュースレター作成</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-item-name">pdf</div>
+      <div class="skill-item-desc">PDF読み取り・結合・OCR</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-item-name">xlsx</div>
+      <div class="skill-item-desc">Excelスプレッドシートの作成・編集</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-item-name">mcp-builder</div>
+      <div class="skill-item-desc">MCPサーバーの設計・生成</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-item-name">skill-creator</div>
+      <div class="skill-item-desc">新しいSkillを作成・最適化</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-item-name">algorithmic-art</div>
+      <div class="skill-item-desc">p5.jsでジェネラティブアート制作</div>
+    </div>
+    <div class="skill-item">
+      <div class="skill-item-name">brand-guidelines</div>
+      <div class="skill-item-desc">ブランドガイドライン準拠のデザイン</div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===== 2. HOW TO ===== -->
+<section id="howto">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>作り方・使い方</h2>
+  </div>
+
+  <h3>最小構成のSkillを作る（5分でできる）</h3>
+  <p>必要なのは<strong style="color:var(--text-bright)">フォルダ1つ + ファイル1つ</strong>だけです：</p>
+
+  <div class="code-block">
+    <span class="code-label">SKILL.md</span>
+<span class="c-comment">---</span>
+<span class="c-key">name</span>: <span class="c-str">weekly-report</span>
+<span class="c-key">description</span>: <span class="c-str">社内の週次報告を書くためのSkill。進捗・課題・来週の予定を</span>
+<span class="c-str">           社内標準フォーマット（3P形式）で作成する。「週報」「進捗報告」</span>
+<span class="c-str">           「週次まとめ」などと言われたら必ずこのSkillを使うこと。</span>
+<span class="c-comment">---</span>
+
+<span class="c-head"># 週次報告Skill</span>
+
+<span class="c-head">## 出力フォーマット</span>
+必ず以下の構成で出力すること：
+
+<span class="c-val">【Progress（進捗）】</span>
+- 今週完了したこと
+
+<span class="c-val">【Plans（来週の計画）】</span>
+- 来週取り組むこと
+
+<span class="c-val">【Problems（課題）】</span>
+- 困っていること・ブロッカー
+
+<span class="c-head">## ルール</span>
+- 箇条書きは1行30文字以内
+- 専門用語は括弧で英語を併記
+- トーンは丁寧だが簡潔に
+  </div>
+
+  <h3>Skillとして使う3つの方法</h3>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>方法A: フォルダを直接置く（最速）</h4>
+        <p>プロジェクトの <code style="color:var(--accent)">.claude/skills/</code> ディレクトリにSkillフォルダを入れるだけ。そのプロジェクト内でClaude Codeを使うと自動的に読み込まれる。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>方法B: Pluginとしてインストール（公式）</h4>
+        <p>GitHubリポジトリをMarketplaceとして登録し、<code style="color:var(--accent)">/plugin install</code> コマンドでインストール。複数プロジェクトに横断適用できる。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>方法C: claude.aiのプロジェクト設定（Web版）</h4>
+        <p>claude.aiのプロジェクト設定画面からSkillをアップロード。コードが不要でGUIで完結する。</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>Claude Codeでの具体的な導入手順</h3>
+
+  <div class="card card-blue">
+    <div class="code-block" style="margin-bottom:0">
+<span class="c-comment"># 1. GitHubリポジトリをMarketplaceに登録</span>
+<span class="c-val">/plugin marketplace add</span> <span class="c-str">your-org/your-skills-repo</span>
+
+<span class="c-comment"># 2. インストール（GUIで選んでもOK）</span>
+<span class="c-val">/plugin install</span> <span class="c-str">my-skill@your-marketplace</span>
+
+<span class="c-comment"># 3. 使い方を確認</span>
+<span class="c-val">/skills</span>
+
+<span class="c-comment"># 4. あとは普通に話しかけるだけ（自動発動）</span>
+<span class="c-str">「今週の進捗報告を書いて」</span>  <span class="c-comment">→ weekly-report Skillが自動で発動</span>
+    </div>
+  </div>
+
+  <h3>Skillを改善するコツ</h3>
+  <div class="grid-2">
+    <div class="card card-green">
+      <h3>description を具体的に書く</h3>
+      <p style="font-size:13px;">Skillが発動するかどうかはdescriptionの質で決まります。<br>「どんな状況で使うか」まで書くと精度が上がります。</p>
+      <div class="tip-box" style="margin-top:8px">
+        <strong>OK例：</strong>「週報・進捗報告・週次まとめと言われたら必ずこのSkillを使う」
+      </div>
+    </div>
+    <div class="card card-accent">
+      <h3>skill-creator Skillを活用する</h3>
+      <p style="font-size:13px;">公式の <strong>skill-creator</strong> Skillを使うと、テストケース作成→実行→評価→改善のループをClaudeと一緒に回せます。</p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===== 3. RAG ===== -->
+<section id="rag">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>RAGとSkillsの違い</h2>
+  </div>
+
+  <p>よく混同されますが、<strong style="color:var(--text-bright)">RAGは「何を知るか」、Skillsは「どうやるか」</strong>の違いです。</p>
+
+  <div class="diagram">
+    <div class="diagram-title">概念の違い</div>
+    <div class="flow">
+      <div class="flow-box" style="background:rgba(247,163,94,0.12); border-color:rgba(247,163,94,0.4); color:#f7c88e; min-width:160px;">
+        RAG
+        <div class="flow-sub">知識の検索・注入</div>
+      </div>
+      <div style="padding:0 20px; color:var(--text-dim); font-size:22px;">vs</div>
+      <div class="flow-box" style="background:rgba(124,106,247,0.12); border-color:rgba(124,106,247,0.4); color:#a89cf7; min-width:160px;">
+        Skills
+        <div class="flow-sub">手順・行動の定義</div>
+      </div>
+    </div>
+  </div>
+
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>観点</th>
+        <th class="tag-rag">RAG</th>
+        <th class="tag-skill">Skills</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="label-col">目的</td>
+        <td>最新・大量の情報を検索して回答に使う</td>
+        <td>特定のタスクを決まった手順で実行させる</td>
+      </tr>
+      <tr>
+        <td class="label-col">主な入力</td>
+        <td>ドキュメント・DB・ベクトルストア</td>
+        <td>SKILL.md（手順書）+ スクリプト</td>
+      </tr>
+      <tr>
+        <td class="label-col">Claudeの役割</td>
+        <td>検索結果を読んで回答を生成する</td>
+        <td>書かれた手順に従って行動する</td>
+      </tr>
+      <tr>
+        <td class="label-col">得意なこと</td>
+        <td>「〇〇について教えて」という質問応答</td>
+        <td>「〇〇を作って」という作業・生成タスク</td>
+      </tr>
+      <tr>
+        <td class="label-col">更新</td>
+        <td>データベースを更新することで知識が変わる</td>
+        <td>SKILL.mdを書き直すことで挙動が変わる</td>
+      </tr>
+      <tr>
+        <td class="label-col">スクリプト実行</td>
+        <td>基本的になし</td>
+        <td>Pythonスクリプト等を実行できる</td>
+      </tr>
+      <tr>
+        <td class="label-col">組み合わせ</td>
+        <td colspan="2" style="text-align:center; color:var(--accent4)">併用可能。Skillの中でRAGを呼び出す設計もできる</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box">
+    <strong>具体例で理解する：</strong><br>
+    「社内規程を調べて回答する」→ <strong>RAG</strong>（規程ドキュメントをベクトル検索）<br>
+    「社内フォーマットで稟議書を書く」→ <strong>Skills</strong>（書き方のルールをSKILL.mdに定義）<br>
+    「最新の競合情報を調べて、社内テンプレートで報告書にまとめる」→ <strong>RAG + Skills の組み合わせ</strong>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===== 4. PLATFORM ===== -->
+<section id="platform">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>対応プラットフォーム</h2>
+  </div>
+
+  <p>Skillsは<strong style="color:var(--text-bright)">Claude専用の機能</strong>です。ChatGPTやGeminiでは使えません。<br>
+  ただしClaudeの中では<strong style="color:var(--text-bright)">3つのプラットフォーム</strong>すべてで利用可能です。</p>
+
+  <div class="platform-grid">
+    <div class="platform-card">
+      <div class="platform-name">
+        <div class="platform-icon pi-cc">💻</div>
+        Claude Code（CLI）
+      </div>
+      <div class="platform-desc">エンジニア向けターミナルツール。最も高度なSkill活用が可能。</div>
+      <ul class="platform-steps">
+        <li>Pluginとしてインストール</li>
+        <li>プロジェクトごとに自動適用</li>
+        <li>スクリプト実行・ファイル操作も可</li>
+        <li><code>/plugin</code>コマンドで管理</li>
+      </ul>
+    </div>
+    <div class="platform-card">
+      <div class="platform-name">
+        <div class="platform-icon pi-web">🌐</div>
+        Claude.ai（Web版）
+      </div>
+      <div class="platform-desc">ブラウザで使える一般向けUI。GUIでSkillを設定できる。</div>
+      <ul class="platform-steps">
+        <li>プロジェクト設定からSkillをアップロード</li>
+        <li>有料プランで利用可能</li>
+        <li>公式Skillが多数プリセット済み</li>
+        <li>コードを書かずに設定できる</li>
+      </ul>
+    </div>
+    <div class="platform-card">
+      <div class="platform-name">
+        <div class="platform-icon pi-api">⚡</div>
+        Claude API
+      </div>
+      <div class="platform-desc">開発者向けAPIアクセス。アプリにSkillを組み込める。</div>
+      <ul class="platform-steps">
+        <li>Skills API でカスタムSkillを登録</li>
+        <li>APIリクエストにSkillを指定</li>
+        <li>システム開発・自社アプリ組み込みに最適</li>
+        <li>Anthropic公式SkillもAPI経由で利用可</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-box" style="margin-top:20px">
+    <strong>他のAIサービスについて：</strong><br>
+    Skills（Agent Skills標準）は現在<strong>Claude専用</strong>です。ただし「Agent Skills」という仕様は <a href="https://agentskills.io" style="color:var(--accent)">agentskills.io</a> でオープンな標準として公開されており、将来的に他のAIが対応する可能性もあります。
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===== 5. SHARE ===== -->
+<section id="share">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Skillsを共有する方法</h2>
+  </div>
+
+  <p>Skillsは<strong style="color:var(--text-bright)">チーム・社内・世界中</strong>と共有できます。共有の粒度によって3つの方法があります。</p>
+
+  <div class="share-methods">
+    <div class="share-card">
+      <div class="share-icon">👥</div>
+      <div class="share-title">方法1: GitHubリポジトリで共有</div>
+      <div class="share-desc">
+        SkillフォルダをGitHubに置き、Marketplaceとして登録するだけ。チームメンバーは<code style="color:var(--accent)">/plugin install</code>でインストールできる。<br><br>
+        <strong style="color:var(--text-bright)">社内共有に最適。</strong>プライベートリポジトリにすれば社内限定にできる。
+      </div>
+    </div>
+    <div class="share-card">
+      <div class="share-icon">🏢</div>
+      <div class="share-title">方法2: プロジェクトフォルダごと共有</div>
+      <div class="share-desc">
+        <code style="color:var(--accent)">.claude/skills/</code> フォルダをプロジェクトのGitリポジトリに含めてコミット。<br><br>
+        リポジトリをcloneした人は全員、自動的に同じSkillが使える。<strong style="color:var(--text-bright)">チーム開発に最適。</strong>
+      </div>
+    </div>
+    <div class="share-card">
+      <div class="share-icon">🌍</div>
+      <div class="share-title">方法3: 公開Marketplaceとして公開</div>
+      <div class="share-desc">
+        GitHubをPublicにして公開Marketplaceとして公開。Anthropic公式の <code style="color:var(--accent)">anthropics/skills</code> のように、誰でも使える状態にできる。<br><br>
+        <strong style="color:var(--text-bright)">社外・OSS公開に最適。</strong>
+      </div>
+    </div>
+  </div>
+
+  <h3>社内でSkillsを展開する手順</h3>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>社内Skillsリポジトリを作成する</h4>
+        <p>GitHub（またはGitLab）にプライベートリポジトリを作り、SKILL.mdフォルダを整理して置く。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>Marketplaceとして登録する</h4>
+        <p>Claude Codeで <code style="color:var(--accent)">/plugin marketplace add your-org/your-skills-repo</code> を実行。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>チームに展開する</h4>
+        <p>社内wikiやSlackに手順を共有。各メンバーが <code style="color:var(--accent)">/plugin install</code> を実行するだけで使い始められる。</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num"></div>
+      <div class="step-content">
+        <h4>継続的に改善する</h4>
+        <p>SKILL.mdをGit管理しているので、改善はPRで行いレビューできる。バージョン管理も自動。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>社内パイオニアとしてのアドバイス：</strong><br>
+    まず「自分が毎回やっているルーティン作業」を1つSkillにしてみましょう。
+    <strong style="color:var(--accent4)">skill-creator</strong> Skillを使えば、Claudeが一緒にSkillを設計・テスト・改善してくれます。
+    小さな成功体験を積んでから社内展開すると説得力が増します。
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- ===== SUMMARY ===== -->
+<section>
+  <div class="section-header">
+    <div class="section-num" style="background:linear-gradient(135deg, var(--accent4), #2af0a0)">✓</div>
+    <h2>まとめ</h2>
+  </div>
+
+  <div class="grid-2">
+    <div class="card card-accent">
+      <h3>Skillsとは</h3>
+      <p style="font-size:13px;">SKILL.mdというファイルに書いた手順書。Claudeが「専門家モード」で動くようになる。3層構造で効率的に動作。</p>
+    </div>
+    <div class="card card-blue">
+      <h3>作り方</h3>
+      <p style="font-size:13px;">フォルダ1つ+SKILL.md1ファイルで完成。nameとdescriptionが鍵。skill-creatorで一緒に作れる。</p>
+    </div>
+    <div class="card card-orange">
+      <h3>RAGとの違い</h3>
+      <p style="font-size:13px;">RAGは「何を知るか」、Skillsは「どうやるか」。目的が異なり、組み合わせて使うことも可能。</p>
+    </div>
+    <div class="card card-green">
+      <h3>プラットフォーム・共有</h3>
+      <p style="font-size:13px;">Claude専用（Code / Web / API）で動く。GitHubで社内・社外に共有可能。Claudeを使う人全員と共有できる。</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Claude Code Skills 完全ガイド &nbsp;|&nbsp; 作成日: 2026-05-09 &nbsp;|&nbsp; 参考: <a href="https://support.claude.com/en/articles/12512176-what-are-skills" target="_blank">Anthropic Skills Docs</a> &nbsp;&amp;&nbsp; <a href="https://agentskills.io" target="_blank">agentskills.io</a></p>
+</footer>
+
+</body>
+</html>

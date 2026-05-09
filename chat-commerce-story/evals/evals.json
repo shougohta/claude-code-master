@@ -1,0 +1,149 @@
+{
+  "skill_name": "chat-commerce-story",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "https://bruno-onlineshop.com/ のチャットストーリーを作って",
+      "expected_output": "サービス調査結果（ジャンル・概要・特徴・人気商品ランキング）と3パターン（初回訪問者・リピーター・VIP）のチャットストーリー設計書",
+      "files": [],
+      "assertions": [
+        {
+          "id": "has-service-overview",
+          "description": "サービスのジャンルと概要セクションが含まれているか",
+          "type": "contains_section"
+        },
+        {
+          "id": "has-product-ranking",
+          "description": "人気商品が3件以上リストされているか",
+          "type": "min_product_count"
+        },
+        {
+          "id": "has-first-visitor-pattern",
+          "description": "初回訪問者向けストーリーパターンが含まれているか",
+          "type": "contains_keyword",
+          "value": "初回"
+        },
+        {
+          "id": "has-repeat-customer-pattern",
+          "description": "リピーター向けストーリーパターンが含まれているか",
+          "type": "contains_keyword",
+          "value": "リピーター"
+        },
+        {
+          "id": "has-vip-pattern",
+          "description": "VIP向けストーリーパターンが含まれているか",
+          "type": "contains_keyword",
+          "value": "VIP"
+        },
+        {
+          "id": "has-conversation-format",
+          "description": "ボットの発言と選択肢形式の会話フローが含まれているか",
+          "type": "contains_keyword",
+          "value": "ボット"
+        },
+        {
+          "id": "has-purchase-cta",
+          "description": "購入誘導（商品ページ/カート）への誘導が含まれているか",
+          "type": "contains_any_keyword",
+          "values": ["カート", "商品を見る", "購入"]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "このECサイトのチャットボットシナリオを作りたい: https://bruno-onlineshop.com/",
+      "expected_output": "サービス調査結果（ジャンル・概要・特徴・人気商品ランキング）と3パターン（初回訪問者・リピーター・VIP）のチャットストーリー設計書",
+      "files": [],
+      "assertions": [
+        {
+          "id": "has-service-overview",
+          "description": "サービスのジャンルと概要セクションが含まれているか",
+          "type": "contains_section"
+        },
+        {
+          "id": "has-product-ranking",
+          "description": "人気商品が3件以上リストされているか",
+          "type": "min_product_count"
+        },
+        {
+          "id": "has-first-visitor-pattern",
+          "description": "初回訪問者向けストーリーパターンが含まれているか",
+          "type": "contains_keyword",
+          "value": "初回"
+        },
+        {
+          "id": "has-repeat-customer-pattern",
+          "description": "リピーター向けストーリーパターンが含まれているか",
+          "type": "contains_keyword",
+          "value": "リピーター"
+        },
+        {
+          "id": "has-vip-pattern",
+          "description": "VIP向けストーリーパターンが含まれているか",
+          "type": "contains_keyword",
+          "value": "VIP"
+        },
+        {
+          "id": "has-conversation-format",
+          "description": "ボットの発言と選択肢形式の会話フローが含まれているか",
+          "type": "contains_keyword",
+          "value": "ボット"
+        },
+        {
+          "id": "has-purchase-cta",
+          "description": "購入誘導（商品ページ/カート）への誘導が含まれているか",
+          "type": "contains_any_keyword",
+          "values": ["カート", "商品を見る", "購入"]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "https://bruno-onlineshop.com/ を分析して、購入につながるチャット導線を設計してください",
+      "expected_output": "サービス調査結果（ジャンル・概要・特徴・人気商品ランキング）と3パターン（初回訪問者・リピーター・VIP）のチャットストーリー設計書",
+      "files": [],
+      "assertions": [
+        {
+          "id": "has-service-overview",
+          "description": "サービスのジャンルと概要セクションが含まれているか",
+          "type": "contains_section"
+        },
+        {
+          "id": "has-product-ranking",
+          "description": "人気商品が3件以上リストされているか",
+          "type": "min_product_count"
+        },
+        {
+          "id": "has-first-visitor-pattern",
+          "description": "初回訪問者向けストーリーパターンが含まれているか",
+          "type": "contains_keyword",
+          "value": "初回"
+        },
+        {
+          "id": "has-repeat-customer-pattern",
+          "description": "リピーター向けストーリーパターンが含まれているか",
+          "type": "contains_keyword",
+          "value": "リピーター"
+        },
+        {
+          "id": "has-vip-pattern",
+          "description": "VIP向けストーリーパターンが含まれているか",
+          "type": "contains_keyword",
+          "value": "VIP"
+        },
+        {
+          "id": "has-conversation-format",
+          "description": "ボットの発言と選択肢形式の会話フローが含まれているか",
+          "type": "contains_keyword",
+          "value": "ボット"
+        },
+        {
+          "id": "has-purchase-cta",
+          "description": "購入誘導（商品ページ/カート）への誘導が含まれているか",
+          "type": "contains_any_keyword",
+          "values": ["カート", "商品を見る", "購入"]
+        }
+      ]
+    }
+  ]
+}

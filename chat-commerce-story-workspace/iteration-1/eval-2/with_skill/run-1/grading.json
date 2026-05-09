@@ -1,0 +1,50 @@
+{
+  "eval_id": "eval-2",
+  "config": "with_skill",
+  "pass_rate": 1.0,
+  "passed": 7,
+  "total": 7,
+  "expectations": [
+    {
+      "text": "サービスのジャンルと概要セクションが含まれているか",
+      "passed": true,
+      "evidence": "検出キーワード: ['ジャンル', 'サービス概要']"
+    },
+    {
+      "text": "人気商品が3件以上リストされているか",
+      "passed": true,
+      "evidence": "5/3 件の商品キーワードを検出"
+    },
+    {
+      "text": "初回訪問者向けストーリーパターンが含まれているか",
+      "passed": true,
+      "evidence": "検出キーワード: ['初回']"
+    },
+    {
+      "text": "リピーター向けストーリーパターンが含まれているか",
+      "passed": true,
+      "evidence": "検出キーワード: ['リピーター']"
+    },
+    {
+      "text": "VIP向けストーリーパターンが含まれているか",
+      "passed": true,
+      "evidence": "検出キーワード: ['VIP']"
+    },
+    {
+      "text": "ボットの発言と選択肢形式の会話フローが含まれているか",
+      "passed": true,
+      "evidence": "検出キーワード: ['ボット', '🤖']"
+    },
+    {
+      "text": "購入誘導（商品ページ/カート）への誘導が含まれているか",
+      "passed": true,
+      "evidence": "検出キーワード: ['カート', '商品を見る', '購入']"
+    }
+  ],
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 7,
+    "failed": 0,
+    "total": 7
+  }
+}

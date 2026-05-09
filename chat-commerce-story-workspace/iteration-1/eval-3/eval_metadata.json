@@ -1,0 +1,6 @@
+{
+  "eval_id": 3,
+  "eval_name": "purchase-flow-design-request",
+  "prompt": "https://bruno-onlineshop.com/ を分析して、購入につながるチャット導線を設計してください",
+  "assertions": []
+}

@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Users/ootashougo/Downloads/**)",
+      "Bash(mkdir -p /Users/ootashougo/Documents/claude-code-test/chat-commerce-story/evals)",
+      "Bash(mkdir -p /Users/ootashougo/Documents/claude-code-test/chat-commerce-story-workspace/iteration-1)",
+      "Skill(update-config)",
+      "Bash(python3 grade.py)",
+      "Read(//Users/ootashougo/.claude/plugins/cache/anthropic-agent-skills/example-skills/b0cbd3df1533/skills/skill-creator/**)",
+      "Bash(python3 -m scripts.aggregate_benchmark /Users/ootashougo/Documents/claude-code-test/chat-commerce-story-workspace/iteration-1 --skill-name chat-commerce-story)",
+      "Bash(SKILL_CREATOR=/Users/ootashougo/.claude/plugins/cache/anthropic-agent-skills/example-skills/b0cbd3df1533/skills/skill-creator)",
+      "Bash(WORKSPACE=/Users/ootashougo/Documents/claude-code-test/chat-commerce-story-workspace/iteration-1)",
+      "Bash(BENCHMARK=$WORKSPACE/benchmark.json)",
+      "Bash(STATIC_OUT=/tmp/chat-commerce-review.html)",
+      "Bash(__NEW_LINE_d187566e46c75afa__ nohup:*)"
+    ]
+  }
+}
