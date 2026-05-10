@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CData とは — 概要・製品・比較</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0d0f14;
+      --bg-card:   #13161d;
+      --bg-muted:  #1a1e28;
+      --border:    rgba(255,255,255,0.07);
+      --border-md: rgba(255,255,255,0.12);
+      --text-1:    #eceef2;
+      --text-2:    #8c92a4;
+      --text-3:    #555c6e;
+      --accent:    #4f8ef7;
+      --accent-bg: rgba(79,142,247,0.10);
+      --accent-bd: rgba(79,142,247,0.25);
+      --teal:      #2dd4a0;
+      --teal-bg:   rgba(45,212,160,0.10);
+      --amber:     #f5a623;
+      --amber-bg:  rgba(245,166,35,0.10);
+      --gray-bg:   rgba(140,146,164,0.10);
+      --font:      'DM Sans', sans-serif;
+      --mono:      'DM Mono', monospace;
+      --radius:    10px;
+      --radius-lg: 14px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text-1);
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 32px 100px;
+    }
+
+    /* ── Hero ── */
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+    .hero-title {
+      font-size: 42px;
+      font-weight: 300;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--text-1);
+      margin-bottom: 20px;
+    }
+    .hero-title strong {
+      font-weight: 500;
+      color: #fff;
+    }
+    .hero-lead {
+      font-size: 16px;
+      color: var(--text-2);
+      line-height: 1.75;
+      max-width: 640px;
+      margin-bottom: 40px;
+    }
+
+    /* ── Stats row ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 60px;
+    }
+    .stat {
+      background: var(--bg-card);
+      padding: 20px 20px;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-3);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .stat-value {
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text-1);
+    }
+
+    /* ── Section headers ── */
+    .section {
+      margin-bottom: 56px;
+    }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .section-tag {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      border: 1px solid var(--border-md);
+      border-radius: 4px;
+      padding: 3px 8px;
+    }
+    .section-rule {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    h2 {
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--text-1);
+      margin-bottom: 8px;
+    }
+    .section-desc {
+      font-size: 14px;
+      color: var(--text-2);
+      margin-bottom: 20px;
+    }
+
+    /* ── Architecture flow ── */
+    .arch {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .arch-block {
+      flex: 1;
+      padding: 20px 20px;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .arch-block:last-child { border-right: none; }
+    .arch-block.hl {
+      background: var(--accent-bg);
+      border-right-color: var(--accent-bd);
+      border-left: 1px solid var(--accent-bd);
+    }
+    .arch-block .ab-tag {
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 6px;
+    }
+    .arch-block.hl .ab-tag { color: var(--accent); }
+    .arch-block .ab-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-1);
+      margin-bottom: 6px;
+    }
+    .arch-block.hl .ab-name { color: #fff; }
+    .arch-block .ab-items {
+      font-size: 12px;
+      color: var(--text-2);
+      line-height: 1.7;
+      font-family: var(--mono);
+    }
+    .arch-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 6px;
+      color: var(--text-3);
+      font-size: 16px;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Product cards ── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .product-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 18px 20px;
+      background: var(--bg-card);
+      transition: border-color 0.2s;
+    }
+    .product-card:hover { border-color: var(--border-md); }
+    .product-card .pc-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-1);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .product-card .pc-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-bd);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+    }
+    .product-card .pc-desc {
+      font-size: 13px;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+    .product-card .pc-tag {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 10px;
+      font-family: var(--mono);
+      color: var(--accent);
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-bd);
+      border-radius: 4px;
+      padding: 2px 7px;
+    }
+
+    /* ── Comparison table ── */
+    .table-wrap {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    thead tr {
+      background: var(--bg-muted);
+    }
+    th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 13px 16px;
+      color: var(--text-2);
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+    tr:last-child td { border-bottom: none; }
+    .td-name {
+      font-weight: 500;
+      color: var(--text-1);
+      white-space: nowrap;
+      font-size: 14px;
+    }
+    tr.hl-row td {
+      background: var(--accent-bg);
+    }
+    tr.hl-row .td-name { color: #fff; }
+
+    /* ── Badges ── */
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+    .b-blue   { background: var(--accent-bg);  color: var(--accent); border: 1px solid var(--accent-bd); }
+    .b-teal   { background: var(--teal-bg);    color: var(--teal);   border: 1px solid rgba(45,212,160,0.25); }
+    .b-amber  { background: var(--amber-bg);   color: var(--amber);  border: 1px solid rgba(245,166,35,0.25); }
+    .b-gray   { background: var(--gray-bg);    color: var(--text-2); border: 1px solid var(--border-md); }
+
+    /* ── Guide cards ── */
+    .guide-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .guide-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 18px 18px;
+      background: var(--bg-card);
+    }
+    .guide-card .gc-label {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-3);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .guide-card .gc-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-1);
+      margin-bottom: 8px;
+    }
+    .guide-card .gc-body {
+      font-size: 12px;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 60px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-3);
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Hero -->
+  <div class="hero-eyebrow">Data Connectivity Platform</div>
+  <h1 class="hero-title"><strong>CData</strong> とは</h1>
+  <p class="hero-lead">CData Software は、250以上のデータソースに対して標準化されたドライバー・コネクターを提供するデータコネクティビティプラットフォームです。アプリケーションや BI / ETL ツールから API・クラウドサービス・データベースを SQL ライクに透過的に扱えるようにすることを主眼としています。</p>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-label">設立</div>
+      <div class="stat-value">2007年</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">本社</div>
+      <div class="stat-value">米国 NC</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">対応データソース</div>
+      <div class="stat-value">250+ 種類</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">主要プロトコル</div>
+      <div class="stat-value">ODBC / JDBC</div>
+    </div>
+  </div>
+
+  <!-- Architecture -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-tag">Architecture</span>
+      <span class="section-rule"></span>
+    </div>
+    <h2>アーキテクチャ上の立ち位置</h2>
+    <p class="section-desc">CData はデータソースと消費ツールの間に位置する「コネクティビティ層」を担います。</p>
+    <div class="arch">
+      <div class="arch-block">
+        <div class="ab-tag">Source</div>
+        <div class="ab-name">データソース</div>
+        <div class="ab-items">
+          Salesforce / Shopify<br>
+          HubSpot / MySQL<br>
+          S3 / Snowflake …
+        </div>
+      </div>
+      <div class="arch-arrow">›</div>
+      <div class="arch-block hl">
+        <div class="ab-tag">Connectivity Layer — CData が担う層</div>
+        <div class="ab-name">標準ドライバー / API Server / Sync</div>
+        <div class="ab-items">
+          ODBC / JDBC / ADO.NET<br>
+          OData REST エンドポイント<br>
+          ETL パイプライン (Sync)
+        </div>
+      </div>
+      <div class="arch-arrow">›</div>
+      <div class="arch-block">
+        <div class="ab-tag">Consumer</div>
+        <div class="ab-name">利用ツール</div>
+        <div class="ab-items">
+          Tableau / Power BI<br>
+          RPA / iPaaS<br>
+          カスタムアプリ …
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-tag">Products</span>
+      <span class="section-rule"></span>
+    </div>
+    <h2>主要製品ライン</h2>
+    <p class="section-desc">コネクタドライバーからフルマネージドな ETL・API 公開まで、用途に合わせて選択できます。</p>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="pc-name">
+          <div class="pc-icon">⇌</div>
+          CData Drivers
+        </div>
+        <div class="pc-desc">ODBC・JDBC・ADO.NET 形式のドライバー。既存の BI ツールや ETL からクラウド API を SQL で呼び出せる。インストール型でオンプレ利用も可能。</div>
+        <span class="pc-tag">ODBC / JDBC / ADO.NET</span>
+      </div>
+      <div class="product-card">
+        <div class="pc-name">
+          <div class="pc-icon">↻</div>
+          CData Sync
+        </div>
+        <div class="pc-desc">ETL / ELT パイプライン製品。スケジュール実行でデータを BigQuery・Snowflake などの DWH へ継続的にレプリケートする。GUIで設定可能。</div>
+        <span class="pc-tag">ETL / ELT</span>
+      </div>
+      <div class="product-card">
+        <div class="pc-name">
+          <div class="pc-icon">☁</div>
+          CData Connect Cloud
+        </div>
+        <div class="pc-desc">クラウド型のデータハブ。各種 SaaS を OData エンドポイントとして公開し、Excel・Power BI などから直接参照できる。セットアップ不要。</div>
+        <span class="pc-tag">SaaS / OData</span>
+      </div>
+      <div class="product-card">
+        <div class="pc-name">
+          <div class="pc-icon">◫</div>
+          CData API Server
+        </div>
+        <div class="pc-desc">オンプレミスの DB やファイルを REST API として外部公開するセルフホスト型製品。社内データの API 化・外部連携に使用される。</div>
+        <span class="pc-tag">REST API / セルフホスト</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparison -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-tag">Comparison</span>
+      <span class="section-rule"></span>
+    </div>
+    <h2>同レイヤーサービスとの比較</h2>
+    <p class="section-desc">データ統合・コネクティビティ領域における代表的な競合・補完サービスの比較です。</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>サービス</th>
+            <th>タイプ</th>
+            <th>強み</th>
+            <th>主なユースケース</th>
+            <th>価格モデル</th>
+            <th>立ち位置</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="hl-row">
+            <td class="td-name">CData ★</td>
+            <td><span class="badge b-blue">コネクタ</span></td>
+            <td>SQL 互換ドライバー、250+ ソース対応、セルフホスト可</td>
+            <td>BI・ETL から API を DB 感覚で接続</td>
+            <td>ドライバー単位</td>
+            <td>コネクティビティ特化</td>
+          </tr>
+          <tr>
+            <td class="td-name">Fivetran</td>
+            <td><span class="badge b-teal">ETL/ELT</span></td>
+            <td>メンテナンスフリー、300+ コネクタ、高信頼性</td>
+            <td>DWH への安定したデータパイプライン構築</td>
+            <td>MAR 従量課金</td>
+            <td>ETL フルマネージド</td>
+          </tr>
+          <tr>
+            <td class="td-name">Airbyte</td>
+            <td><span class="badge b-teal">ETL/ELT</span></td>
+            <td>OSS、カスタムコネクタ開発、コスト柔軟</td>
+            <td>自社運用パイプライン、エンジニア主導</td>
+            <td>OSS 無料 / Cloud 有料</td>
+            <td>OSS フレンドリー</td>
+          </tr>
+          <tr>
+            <td class="td-name">MuleSoft</td>
+            <td><span class="badge b-amber">iPaaS</span></td>
+            <td>API 管理・統合・フロー設計、エンタープライズ実績</td>
+            <td>基幹系システム連携、API エコノミー構築</td>
+            <td>エンタープライズ契約</td>
+            <td>フルスタック iPaaS</td>
+          </tr>
+          <tr>
+            <td class="td-name">Informatica</td>
+            <td><span class="badge b-amber">iPaaS</span></td>
+            <td>データガバナンス・品質管理・カタログ統合</td>
+            <td>大企業の包括的データ管理基盤</td>
+            <td>エンタープライズ契約</td>
+            <td>DQ・ガバナンス重視</td>
+          </tr>
+          <tr>
+            <td class="td-name">Stitch</td>
+            <td><span class="badge b-teal">ETL</span></td>
+            <td>シンプル操作、スタートアップ向け、Talend 傘下</td>
+            <td>手軽なデータパイプライン、小規模チーム</td>
+            <td>行数従量課金</td>
+            <td>軽量 ETL</td>
+          </tr>
+          <tr>
+            <td class="td-name">dbt</td>
+            <td><span class="badge b-gray">変換</span></td>
+            <td>DWH 内変換・テスト・ドキュメント、SQL 中心</td>
+            <td>データモデリング・ELT の T 部分</td>
+            <td>OSS 無料 / Cloud 有料</td>
+            <td>変換 (Transform) 専門</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Guide -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-tag">Selection Guide</span>
+      <span class="section-rule"></span>
+    </div>
+    <h2>選択の指針</h2>
+    <p class="section-desc">ユースケース別に最適なサービスが異なります。</p>
+    <div class="guide-grid">
+      <div class="guide-card">
+        <div class="gc-label">CData が向く場合</div>
+        <div class="gc-title">既存ツールから直接接続したい</div>
+        <div class="gc-body">Tableau・Power BI などの BI ツールや、既存の ETL から SaaS API を SQL で透過的に参照したい場合。ドライバーレベルの柔軟性が必要な場合。</div>
+      </div>
+      <div class="guide-card">
+        <div class="gc-label">Fivetran / Airbyte が向く場合</div>
+        <div class="gc-title">DWH へ安定的にデータを同期したい</div>
+        <div class="gc-body">BigQuery・Snowflake などへデータを定期同期したい場合。パイプラインの安定稼働・監視を重視する場合。Airbyte はコスト重視のチームにも適する。</div>
+      </div>
+      <div class="guide-card">
+        <div class="gc-label">MuleSoft / Informatica が向く場合</div>
+        <div class="gc-title">大規模統合基盤を構築したい</div>
+        <div class="gc-body">基幹システム連携、API 管理、データガバナンスまで含めた大規模なエンタープライズ統合基盤が必要な場合。予算規模が大きい組織向け。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    CData Overview — Generated by Claude · 2026
+  </div>
+
+</div>
+</body>
+</html>
